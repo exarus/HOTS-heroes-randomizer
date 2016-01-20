@@ -13,6 +13,9 @@
               (every? (fn [hero] (contains? names hero))
                       heroes))
             (vals db/heroes-map))))
+          
+(defn valid-members-count? [members]
+  (and (>= (count members) 2) (<= (count members) 10) (even? (count members))))
 
 (defn get-heroes-for [owner free-pick]
   (vec (union (owner db/heroes-map)
@@ -39,13 +42,13 @@
 
 (defn plain-random-teams [members & {:keys [free-pick]}]
   "Plain random teams"
-  (if (and (<= (count members) 10) (= (mod (count members) 2) 0))
+  (if (valid-members-count? members)
     [(random-team (subvec members 0 (/ (count members) 2)) free-pick)
      (random-team (subvec members (/ (count members) 2)) free-pick)]))
 
 (defn mirror-random-teams [members & {:keys [free-pick]}]
   "Random teams with mirror set-ups."
-  (if (and (<= (count members) 10) (= (mod (count members) 2) 0))
+  (if (valid-members-count? members)
     (let [members (shuffle members)
           team-size (/ (count members) 2)
           set-up (rand-nth (filter (fn [e] (= team-size (count e))) db/set-ups))]
