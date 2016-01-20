@@ -1,2 +1,25 @@
 # HOTS-heroes-randomizer
-Randomizer for HOTS custom games. 
+
+A Clojure library designed to
+randomize hero picks for HOTS custom games.
+
+## Usage
+
+1. Fill the db.clj with proper heroes for your friends
+2. From the root directory run command:
+
+> lein repl
+
+3. In REPL run:
+
+> (plain-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick true)
+
+or:
+
+> (mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick false)
+
+## License
+
+Copyright © 2016
+
+Distributed under the GNU General Public License v3.0.
