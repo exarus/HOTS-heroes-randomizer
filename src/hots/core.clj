@@ -75,6 +75,25 @@
        (random-team (subvec members team-size) free-pick :set-up set-up)])
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
 
+(defn- gamers-team-can-pick-composition?
+  [gamers-team composition free-pick]
+  true)
+  
+(defn- available-team-compositions
+  [team free-pick]
+  (->> (get-team-compositions-with-size (count team))
+       (filter #(gamers-team-can-pick-composition? team % free-pick))
+	    set))
+
+(defn- rand-composition-for-teams
+  [team-red team-blue free-pick]
+  (let [team-red-compositions  (available-team-compositions team-red  free-pick)
+        team-blue-compositions (available-team-compositions team-blue free-pick)
+		compositions-intersection (intersection team-blue-compositions team-red-compositions)]
+	(if (empty? compositions-intersection)
+	  (throw (IllegalArgumentException. "Teams are not have available compositions"))
+	  (rand-nth (vec compositions-intersection)))))
+
 (defn mirror-set-up-random-teams
   "Random teams with mirror set-ups."
   [members & {:keys [free-pick]}]
