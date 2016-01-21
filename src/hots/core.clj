@@ -60,7 +60,7 @@
   "Random teams with mirror set-ups."
   [members & {:keys [free-pick]}]
   (if (and (<= (count members) 10) (even? (count members)))
-    (let [members (shuffle members)
+    (let [members (shuffle (vec members))
           team-size (/ (count members) 2)
           set-up (rand-nth (filter (fn [e] (= team-size (count e))) db/set-ups))]
       [(random-team (subvec members 0 team-size) free-pick :set-up set-up)
@@ -69,6 +69,6 @@
 
 (defn -main
   [& args]
-  (let [teams (mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick true)]
+  (let [teams (mirror-random-teams (difference db/gamers #{}) :free-pick true)]
     (println (str "Team 1: " (first teams)))
     (println (str "Team 2: " (second teams)))))

@@ -1,6 +1,6 @@
 (ns hots.db)
 
-(def owners #{:Anton :Bratus :Ruslan :Konstantine :Shiron :Stepanov :Vlad})
+(def gamers #{:Anton :Bratus :Eugene :Ruslan :Konstantine :Shiron :Stepanov :Vlad})
 
 (def week-heroes #{"E.T.C." "Falstad" "Li Li" "Stitches" "Zagara" "Kharazim" "Nazeebo" "Tassadar" "Rexxar" "Lunara"})
 
@@ -20,7 +20,12 @@
    [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Warrior"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
-   [{:role "Warrior"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]])
+   [{:role "Warrior"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
+   [{:role "Warrior"} {:role "Support"} {:role "Assassin"} {:role "Specialist"}]
+
+   [{:role "Warrior"} {:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin"}]
+   [{:role "Warrior"} {:role "Support"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
+   [{:role "Warrior"} {:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]])
 
 (def heroes-map
   {:Anton       #{"Artanis"
@@ -66,6 +71,20 @@
                   "Uther"
                   "Valla"
                   "Zagara"}
+   :Eugene      #{"Artanis"
+                  ;"Cho"
+                  ;"Gall"
+                  "Diablo"
+                  "E.T.C."
+                  "Jaina"
+                  "Johanna"
+                  "Li Li"
+                  "Malfurion"
+                  "Muradin"
+                  "Nova"
+                  "Raynor"
+                  "Sylvanas"
+                  "Valla"}
    :Ruslan      #{"Abathur"
                   "Chen"
                   ;"Cho"
