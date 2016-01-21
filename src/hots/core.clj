@@ -15,12 +15,12 @@
                       heroes))
             (vals db/heroes-map))))
 
-(defn get-heroes-for
+(defn- get-heroes-for
   [owner free-pick]
   (vec (union (owner db/heroes-map)
               (if free-pick db/week-heroes))))
 
-(defn random-hero
+(defn- random-hero
   [owner free-pick & {:keys [role type]}]
   (let [owner-allowed-heroes
         (if (or (some? role) (some? type))
@@ -37,7 +37,7 @@
       (rand-nth owner-allowed-heroes)
       nil)))
 
-(defn random-team
+(defn- random-team
   [owners free-pick & {:keys [set-up]}]
   (let [heroes (map (fn [o s] (random-hero o free-pick :role (:role s) :type (:type s)))
                     owners set-up)]
@@ -47,10 +47,14 @@
         (random-team owners free-pick :set-up set-up))
       (random-team (shuffle owners) free-pick :set-up set-up))))
 
+(defn- valid-members-count?
+  [members]
+  (and (>= (count members) 2) (<= (count members) 10) (even? (count members))))
+
 (defn plain-random-teams
   "Plain random teams"
   [members & {:keys [free-pick]}]
-  (if (and (<= (count members) 10) (even? (count members)))
+  (if (valid-members-count? members)
     (let [team-size (/ (count members) 2)]
       [(random-team (subvec members 0 team-size) free-pick)
        (random-team (subvec members team-size) free-pick)])
@@ -59,7 +63,7 @@
 (defn mirror-random-teams
   "Random teams with mirror set-ups."
   [members & {:keys [free-pick]}]
-  (if (and (<= (count members) 10) (even? (count members)))
+  (if (valid-members-count? members)
     (let [members (shuffle (vec members))
           team-size (/ (count members) 2)
           set-up (rand-nth (filter (fn [e] (= team-size (count e))) db/set-ups))]
