@@ -49,7 +49,11 @@
 
 (defn- valid-members-count?
   [members]
-  (and (>= (count members) 2) (<= (count members) 10) (even? (count members))))
+  (and (<= 2 (count members) 10) (even? (count members))))
+
+(defn- get-team-compositions-with-size
+  [team-size]
+  (filter #(= (count %) team-size) db/set-ups))
 
 (defn plain-random-teams
   "Plain random teams"
@@ -69,6 +73,19 @@
           set-up (rand-nth (filter (fn [e] (= team-size (count e))) db/set-ups))]
       [(random-team (subvec members 0 team-size) free-pick :set-up set-up)
        (random-team (subvec members team-size) free-pick :set-up set-up)])
+    (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
+
+(defn mirror-set-up-random-teams
+  "Random teams with mirror set-ups."
+  [members & {:keys [free-pick]}]
+  (if (valid-members-count? members)
+    (let [members (shuffle (vec members))
+          team-size (/ (count members) 2)
+		  team-red (subvec members 0 team-size)
+		  team-blue (subvec members team-size)
+          set-up (rand-composition-for-teams team-red team-blue free-pick)]
+      [(random-team team-red  free-pick :set-up set-up)
+       (random-team team-blue free-pick :set-up set-up)])
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
 
 (defn -main
