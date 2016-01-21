@@ -5,18 +5,24 @@ randomize hero picks for HOTS custom games.
 
 ## Usage
 
-1. Fill the db.clj with proper heroes for your friends
+1. Fill the db.clj with proper `heroes-map` for your friends
+
+    > `{:Anton  #{"Artanis"
+                 "Butcher"}
+        :Bratus #{"Anub'arak"
+                  "Brightwing"}}`
+
 2. From the root directory run command:
 
-> lein repl
+    > `lein repl`
 
 3. In REPL run:
 
-> (plain-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick true)
+    > `(plain-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick true)`
 
-or:
+    or
 
-> (mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick false)
+    > `(mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick false)`
 
 ## License
 
