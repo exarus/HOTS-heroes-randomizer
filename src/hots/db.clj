@@ -1,6 +1,5 @@
 (ns hots.db)
 
-(def gamers #{:Anton :Bratus :Eugene :Ruslan :Konstantine :Shiron :Stepanov :Vlad})
 
 (def week-heroes #{"E.T.C." "Falstad" "Li Li" "Stitches" "Zagara" "Kharazim" "Nazeebo" "Tassadar" "Rexxar" "Lunara"})
 
@@ -12,17 +11,18 @@
    [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
 
-   [{:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
-   [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
    [{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
    [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
+   [{:role "Support"} {:role "Warrior"} {:role "Assassin"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Warrior"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
-   [{:role "Warrior"} {:role "Support"} {:role "Assassin"} {:role "Specialist"}]
 
+   [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Specialist"}]
+   [{:role "Support"} {:role "Assassin"} {:role "Assassin" :type "Ranged"} {:role "Specialist"}]
+   [{:role "Warrior"} {:role "Support"} {:role "Assassin"} {:role "Specialist"}]
    [{:role "Warrior"} {:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin"}]
    [{:role "Warrior"} {:role "Support"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Warrior"} {:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]])
@@ -191,3 +191,5 @@
                   "Tyrael"
                   "Valla"
                   "Zagara"}})
+
+(def gamers (keys heroes-map))
