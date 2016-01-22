@@ -192,4 +192,4 @@
                   "Valla"
                   "Zagara"}})
 
-(def gamers (keys heroes-map))
+(def gamers (set (keys heroes-map)))

@@ -77,6 +77,6 @@
 
 (defn -main
   [& args]
-  (let [teams (mirror-random-teams (difference db/gamers #{}) :free-pick true)]
+  (let [teams (mirror-random-teams (difference (set db/gamers) #{}) :free-pick true)]
     (println (str "Team 1: " (first teams)))
     (println (str "Team 2: " (second teams)))))
