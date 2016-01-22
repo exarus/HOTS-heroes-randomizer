@@ -18,11 +18,11 @@ randomize hero picks for HOTS custom games.
 
 3. In REPL run:
 
-    > `(plain-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick true)`
+    > `(plain-random-teams db/gamers :free-pick true)`
 
     or
 
-    > `(mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus] :free-pick false)`
+    > `(mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus])`
 
 ## License
 
