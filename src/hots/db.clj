@@ -1,7 +1,7 @@
 (ns hots.db)
 
 
-(def week-heroes #{"E.T.C." "Falstad" "Li Li" "Stitches" "Zagara" "Kharazim" "Nazeebo" "Tassadar" "Rexxar" "Lunara"})
+(def week-heroes #{"Gazlowe" "Kerrigan" "Leoric" "Muradin" "Raynor" "Uther" "Sonya" "Sylvanas" "Lt. Morales"})
 
 ; role: Assassin Warrior Support Specialist
 ; type: Ranged Melee
@@ -11,14 +11,14 @@
    [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
 
-   [{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
+   ;[{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
    [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
    [{:role "Support"} {:role "Warrior"} {:role "Assassin"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Warrior"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
-   [{:role "Warrior"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
+   [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Melee"}]
 
    [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Specialist"}]
    [{:role "Support"} {:role "Assassin"} {:role "Assassin" :type "Ranged"} {:role "Specialist"}]
@@ -83,8 +83,14 @@
                   "Muradin"
                   "Nova"
                   "Raynor"
+                  "Tyrande"
                   "Sylvanas"
                   "Valla"}
+   :Ismail      #{;"Cho"
+                  ;"Gall"
+                  "Illidan"
+                  "Raynor"
+                  "Sylvanas"}
    :Ruslan      #{"Abathur"
                   "Chen"
                   ;"Cho"
