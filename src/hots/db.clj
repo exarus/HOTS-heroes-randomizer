@@ -1,8 +1,6 @@
 (ns hots.db)
 
-(def gamers #{:Anton :Bratus :Eugene :Ruslan :Konstantine :Shiron :Stepanov :Vlad})
-
-(def week-heroes #{"E.T.C." "Falstad" "Li Li" "Stitches" "Zagara" "Kharazim" "Nazeebo" "Tassadar" "Rexxar" "Lunara"})
+(def week-heroes #{"Gazlowe" "Kerrigan" "Leoric" "Muradin" "Raynor" "Uther" "Sonya" "Sylvanas" "Lt. Morales", "Illidan"})
 (def banned-heroes #{"Cho" "Gall"})
 
 ; role: Assassin Warrior Support Specialist
@@ -18,10 +16,10 @@
    [{:role "Warrior"}                 {:role "Assassin" :type "Ranged"}]
 
    ;[{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
-   [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
-   [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
-   [{:role "Support"} {:role "Assassin" :type "Melee"}  {:role "Assassin" :type "Melee"}]
-   [{:role "Warrior"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
+   [{:role "Support"} {:role "Assassin" :type "Ranged"}  {:role "Assassin" :type "Ranged"}]
+   [{:role "Support"} {:role "Assassin" :type "Ranged"}  {:role "Assassin" :type "Melee"}]
+   [{:role "Support"} {:role "Assassin" :type "Melee"}   {:role "Assassin" :type "Melee"}]
+   [{:role "Warrior"} {:role "Assassin" :type "Ranged"}  {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Support"}]
@@ -89,6 +87,7 @@
                   "Muradin"
                   "Nova"
                   "Raynor"
+                  "Tyrande"
                   "Sylvanas"
                   "Valla"}
    :Ismail      #{"Cho"
@@ -165,7 +164,7 @@
                   "Diablo"
                   "E.T.C."
                   "Illidan"
-                  "Kharazim"
+                   "Kharazim"
                   "Leoric"
                   "Li Li"
                   "Malfurion"
@@ -202,3 +201,5 @@
                   "Tyrael"
                   "Valla"
                   "Zagara"}})
+
+(def gamers (set (keys heroes-map)))

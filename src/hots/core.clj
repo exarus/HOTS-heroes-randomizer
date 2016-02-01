@@ -50,8 +50,11 @@
 
 (defn- random-team
   [owners free-pick & {:keys [set-up]}]
-  (let [heroes (map (fn [o s] (random-hero o free-pick :role (:role s) :type (:type s)))
-                    owners set-up)]
+  (let [heroes (if (some? set-up)
+                 (map (fn [o s] (random-hero o free-pick :role (:role s) :type (:type s)))
+                      owners set-up)
+                 (map (fn [o] (random-hero o free-pick))
+                      owners))]
     (if (every? some? heroes)
       (if (apply distinct? heroes)
         (zipmap owners heroes)
@@ -70,7 +73,8 @@
   "Plain random teams"
   [members & {:keys [free-pick]}]
   (if (valid-members-count? members)
-    (let [team-size (/ (count members) 2)]
+    (let [members (vec members)
+          team-size (/ (count members) 2)]
       [(random-team (subvec members 0 team-size) free-pick)
        (random-team (subvec members team-size) free-pick)])
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
