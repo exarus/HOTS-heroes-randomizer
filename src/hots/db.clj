@@ -1,24 +1,28 @@
 (ns hots.db)
 
-
-(def week-heroes #{"Gazlowe" "Kerrigan" "Leoric" "Muradin" "Raynor" "Uther" "Sonya" "Sylvanas" "Lt. Morales"})
+(def week-heroes #{"Gazlowe" "Kerrigan" "Leoric" "Muradin" "Raynor" "Uther" "Sonya" "Sylvanas" "Lt. Morales", "Illidan"})
+(def banned-heroes #{"Cho" "Gall"})
 
 ; role: Assassin Warrior Support Specialist
 ; type: Ranged Melee
 
 (def set-ups
-  [[{:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
+  [[{:role "Assassin" :type "Melee"}  {:role "Assassin" :type "Melee"}]
    [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
+   [{:role "Support"}                 {:role "Assassin" :type "Melee"}]
+   [{:role "Support"}                 {:role "Assassin" :type "Ranged"}]
+   [{:role "Warrior"}                 {:role "Assassin" :type "Melee"}]
+   [{:role "Warrior"}                 {:role "Assassin" :type "Ranged"}]
 
    ;[{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
-   [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
-   [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
-   [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
-   [{:role "Support"} {:role "Warrior"} {:role "Assassin"}]
+   [{:role "Support"} {:role "Assassin" :type "Ranged"}  {:role "Assassin" :type "Ranged"}]
+   [{:role "Support"} {:role "Assassin" :type "Ranged"}  {:role "Assassin" :type "Melee"}]
+   [{:role "Support"} {:role "Assassin" :type "Melee"}   {:role "Assassin" :type "Melee"}]
+   [{:role "Warrior"} {:role "Assassin" :type "Ranged"}  {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
-   [{:role "Warrior"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin"} {:role "Assassin" :type "Melee"}]
+   [{:role "Warrior"} {:role "Assassin"} {:role "Support"}]
 
    [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Specialist"}]
    [{:role "Support"} {:role "Assassin"} {:role "Assassin" :type "Ranged"} {:role "Specialist"}]
@@ -30,8 +34,8 @@
 (def heroes-map
   {:Anton       #{"Artanis"
                   "Butcher"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "Gazlowe"
                   "E.T.C."
                   "Jaina"
@@ -51,8 +55,8 @@
                   "Valla"}
    :Bratus      #{"Anub'arak"
                   "Brightwing"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "E.T.C."
                   "Gazlowe"
                   "Jaina"
@@ -72,8 +76,8 @@
                   "Valla"
                   "Zagara"}
    :Eugene      #{"Artanis"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "Diablo"
                   "E.T.C."
                   "Jaina"
@@ -86,15 +90,15 @@
                   "Tyrande"
                   "Sylvanas"
                   "Valla"}
-   :Ismail      #{;"Cho"
-                  ;"Gall"
+   :Ismail      #{"Cho"
+                  "Gall"
                   "Illidan"
                   "Raynor"
                   "Sylvanas"}
    :Ruslan      #{"Abathur"
                   "Chen"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "Diablo"
                   "E.T.C."
                   "Illidan"
@@ -117,8 +121,8 @@
                   "Arthas"
                   "Azmodan"
                   "Butcher"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "Greymane"
                   "Diablo"
                   "E.T.C."
@@ -139,8 +143,8 @@
                   "Valla"
                   "Zagara"
                   "Zeratul"}
-   :Shiron      #{;"Cho"
-                  ;"Gall"
+   :Shiron      #{"Cho"
+                  "Gall"
                   "E.T.C."
                   "Illidan"
                   "Li Li"
@@ -153,14 +157,14 @@
                   "Valla"}
    :Stepanov    #{"Anub'arak"
                   "Azmodan"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "Gazlowe"
                   "Johanna"
                   "Diablo"
                   "E.T.C."
                   "Illidan"
-                  "Kharazim"
+                   "Kharazim"
                   "Leoric"
                   "Li Li"
                   "Malfurion"
@@ -176,8 +180,8 @@
                   "Anub'arak"
                   "Artanis"
                   "Chen"
-                  ;"Cho"
-                  ;"Gall"
+                  "Cho"
+                  "Gall"
                   "E.T.C."
                   "Falstad"
                   "Gazlowe"
