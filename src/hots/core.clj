@@ -1,4 +1,5 @@
 (ns hots.core
+  (:gen-class)
   (:require [hots.db :as db]
             [json-path :as json-path]
             [clojure.set :refer :all]
@@ -7,49 +8,39 @@
             [clojure.math.combinatorics :as comb]
             [clojure.tools.trace :as trace]))
 
-(defn validate-heroes-db
-  []
-  (let [heroes-txt (-> "heroes.json" io/resource io/file slurp)
-        heroes-json (json/read-str heroes-txt :key-fn keyword)
-        names (set (json-path/at-path "$[*].name" heroes-json))]
+(def all-heroes-data
+  (-> "heroes.json"
+      io/resource
+      io/file
+      slurp
+      (json/read-str :key-fn keyword)))
+
+(defn validate-heroes-db []
+  (let [names (set (json-path/at-path "$[*].name" all-heroes-data))]
     (every? (fn [heroes]
               (every? (fn [hero] (contains? names hero))
                       heroes))
             (vals db/heroes-map))))
 
-(defn- all-heroes-data []
-  (do (defonce all-heroes-data-cache
-               (-> "heroes.json"
-                   io/resource
-                   io/file
-                   slurp
-                   (json/read-str :key-fn keyword)))
-      all-heroes-data-cache))
+(defn- get-hero-property [hero-name property-name]
+  (property-name (some #(if (= hero-name (:name %)) %) all-heroes-data)))
 
-(defn- get-hero-property
-  [hero-name property-name]
-  (property-name (some #(if (= hero-name (:name %)) %) (all-heroes-data))))
-
-(defn- hero-have-these-role-and-type
-  [hero role type]
+(defn- hero-have-these-role-and-type [hero role type]
   (and (or (nil? role) (= role (get-hero-property hero :role)))
        (or (nil? type) (= type (get-hero-property hero :type)))))
 
-(defn- get-heroes-for
-  [owner & {:keys [free-pick role type without]}]
+(defn- get-heroes-for [owner & {:keys [free-pick role type without]}]
   (if-not (nil? owner)
     (if (some some? [role type])
       (filter #(hero-have-these-role-and-type % role type) (get-heroes-for owner :free-pick free-pick :without without))
       (difference (union (owner db/heroes-map) (if free-pick db/week-heroes)) (union db/banned-heroes without)))))
 
-(defn- random-hero
-  [owner free-pick & {:keys [role type]}]
+(defn- random-hero [owner free-pick & {:keys [role type]}]
   (let [owner-allowed-heroes (vec (get-heroes-for owner :free-pick free-pick :role role :type type))]
     (when (not-empty owner-allowed-heroes)
       (rand-nth owner-allowed-heroes))))
 
-(defn- random-team
-  [owners free-pick & {:keys [set-up]}]
+(defn- random-team [owners free-pick & {:keys [set-up]}]
   (let [heroes (if (some? set-up)
                  (map (fn [o s] (random-hero o free-pick :role (:role s) :type (:type s)))
                       owners set-up)
@@ -61,12 +52,10 @@
         (random-team owners free-pick :set-up set-up))
       (random-team (shuffle owners) free-pick :set-up set-up))))
 
-(defn- valid-members-count?
-  [members]
+(defn- valid-members-count? [members]
   (and (<= 2 (count members) 10) (even? (count members))))
 
-(defn- get-team-compositions-with-size
-  [team-size]
+(defn- get-team-compositions-with-size [team-size]
   (filter #(= (count %) team-size) db/set-ups))
 
 (defn plain-random-teams
@@ -90,8 +79,7 @@
        (random-team (subvec members team-size) free-pick :set-up set-up)])
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
 
-(defn- not-have-repeating-elements?
-  [seq]
+(defn- not-have-repeating-elements? [seq]
   (= (count seq) (count (set seq))))
 
 (defn- find-all-valid-hero-combinations-for-specified-team
@@ -122,8 +110,7 @@
           free-pick)
         (zipmap rand-team-members-order (rand-nth rand-teams))))))
 
-(defn- random-heroes-for-team
-  [team-members team-composition & [free-pick]]
+(defn- random-heroes-for-team [team-members team-composition & [free-pick]]
   (random-heroes-for-team-with-members-combinations
     (comb/permutations team-members)
     team-composition
