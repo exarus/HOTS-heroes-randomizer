@@ -1,7 +1,7 @@
 (ns hots.db)
 
 (def week-heroes #{"Gazlowe" "Kerrigan" "Leoric" "Muradin" "Raynor" "Uther" "Sonya" "Sylvanas" "Lt. Morales", "Illidan"})
-(def banned-heroes #{"Cho" "Gall"})
+(def banned-heroes #{"Cho" "Gall" "Zeratul" "Nova"})
 
 ; role: Assassin Warrior Support Specialist
 ; type: Ranged Melee
