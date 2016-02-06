@@ -2,7 +2,6 @@
   (:gen-class)
   (:require [hots.db :as db]
             [clojure.set :refer :all]
-            [clojure.data.json :as json]
             [clj-http.client :as client]
             [clojure.math.combinatorics :as comb]))
 
@@ -73,12 +72,12 @@
        (random-team (subvec members team-size) free-pick :set-up set-up)])
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
 
-(defn- not-have-repeating-elements? [seq]
+(defn- all-elements-unique? [seq]
   (= (count seq) (count (set seq))))
 
 (defn- find-all-valid-hero-combinations-for-specified-team
   [members-order hero-role-order & [free-pick]]
-  {:pre [(= (count members-order) (count hero-role-order)) (not-have-repeating-elements? members-order)]}
+  {:pre [(= (count members-order) (count hero-role-order)) (all-elements-unique? members-order)]}
   (let [owners-heroes-lists
         (mapv #(get-heroes-for
                 %1
@@ -87,7 +86,7 @@
                 :type (:type %2))
               members-order
               hero-role-order)]
-    (filter not-have-repeating-elements?
+    (filter all-elements-unique?
             (apply comb/cartesian-product owners-heroes-lists))))
 
 (defn- random-heroes-for-team-with-members-combinations
@@ -133,7 +132,7 @@
           (println "  Blue team: " (vals (first teams)))
           (println "  Red  team: " (vals (second teams)))
 
-          (if (= (read-line) "ok")
+          (if (not-empty (read-line))
             (do (println "Teams revealed:")
                 (println (str "  Blue team: " (first teams)))
                 (println (str "  Red  team: " (second teams))))
