@@ -1,22 +1,16 @@
 (ns hots.core
   (:gen-class)
   (:require [hots.db :as db]
-            [json-path :as json-path]
             [clojure.set :refer :all]
             [clojure.data.json :as json]
-            [clojure.java.io :as io]
-            [clojure.math.combinatorics :as comb]
-            [clojure.tools.trace :as trace]))
+            [clj-http.client :as client]
+            [clojure.math.combinatorics :as comb]))
 
 (def all-heroes-data
-  (-> "heroes.json"
-      io/resource
-      io/file
-      slurp
-      (json/read-str :key-fn keyword)))
+  (:body (client/get "http://heroesjson.com/json/heroes.json" {:accept :json, :as :json})))
 
 (defn validate-heroes-db []
-  (let [names (set (json-path/at-path "$[*].name" all-heroes-data))]
+  (let [names (set (map :name all-heroes-data))]
     (every? (fn [heroes]
               (every? (fn [hero] (contains? names hero))
                       heroes))
