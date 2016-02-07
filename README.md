@@ -14,17 +14,15 @@ randomize hero picks for HOTS custom games.
 
 2. From the root directory run command:
 
-    > `lein repl`
+    > `lein run`
 
-3. In REPL run:
-
-    > `(plain-random-teams db/gamers :free-pick true)`
-
-    or
-
-    > `(mirror-random-teams [:Anton :Konstantine :Ruslan :Vlad :Shiron :Bratus])`
+3. Progam will show the suggested setup.
+  * If you like the hero setup **type anything**, for example: `cool` and press *Enter*, key.
+  * Else, if you **don't like** hero setup, then just don't type anything and press *Enter*.
 
 ## License
+
+This application is no way affiliated with, associated with or endorsed by Blizzard Entertainment, Inc.
 
 Copyright © 2016
 
