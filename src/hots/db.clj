@@ -1,10 +1,6 @@
 (ns hots.db)
 
-(def week-heroes #{"Gazlowe" "Kerrigan" "Leoric" "Muradin" "Raynor" "Uther" "Sonya" "Sylvanas" "Lt. Morales", "Illidan"})
 (def banned-heroes #{"Cho" "Gall" "Zeratul" "Nova"})
-
-; role: Assassin Warrior Support Specialist
-; type: Ranged Melee
 
 (def set-ups
   [[{:role "Assassin" :type "Melee"}  {:role "Assassin" :type "Melee"}]
@@ -151,6 +147,7 @@
                   "Gall"
                   "E.T.C."
                   "Illidan"
+                  "Johanna"
                   "Li Li"
                   "Malfurion"
                   "Muradin"

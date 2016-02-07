@@ -2,8 +2,23 @@
   (:gen-class)
   (:require [hots.db :as db]
             [clojure.set :refer :all]
+            [clojure.string :as str]
+            [clojure.data.json :as json]
             [clj-http.client :as client]
             [clojure.math.combinatorics :as comb]))
+
+(def free-rotation-heroes
+  (->>
+    (-> (client/get "http://eu.battle.net/heroes/en/")
+        (:body)
+        (str/split #"window.heroes = ")
+        (second)
+        (str/split #";")
+        (first)
+        (json/read-str :key-fn keyword))
+    (filter #(:inFreeHeroRotation %))
+    (map :name)
+    (set)))
 
 (def all-heroes-data
   (:body (client/get "http://heroesjson.com/json/heroes.json" {:accept :json, :as :json})))
@@ -25,8 +40,10 @@
 (defn- get-heroes-for [owner & {:keys [free-pick role type without]}]
   (if-not (nil? owner)
     (if (some some? [role type])
-      (filter #(hero-have-these-role-and-type % role type) (get-heroes-for owner :free-pick free-pick :without without))
-      (difference (union (owner db/heroes-map) (if free-pick db/week-heroes)) (union db/banned-heroes without)))))
+      (filter #(hero-have-these-role-and-type % role type)
+              (get-heroes-for owner :free-pick free-pick :without without))
+      (difference (union (owner db/heroes-map) (if free-pick free-rotation-heroes))
+                  (union db/banned-heroes without)))))
 
 (defn- random-hero [owner free-pick & {:keys [role type]}]
   (let [owner-allowed-heroes (vec (get-heroes-for owner :free-pick free-pick :role role :type type))]
@@ -125,9 +142,10 @@
 
 (defn -main
   [& args]
-  (let [teams (mirror-set-up-random-teams (difference db/gamers #{:Ismail}) :free-pick true)]
+  (let [teams (mirror-set-up-random-teams (difference db/gamers #{:Bratus :Ismail :Vlad}) :free-pick true)]
     (if (or (nil? (first teams)) (nil? (second teams)))
-      (println "Unable to find a team for random setup. Try again.")
+      (do (println "Unable to find a team for random setup. Try again.")
+          (-main))
       (do (println "Heroes teams:")
           (println "  Blue team: " (vals (first teams)))
           (println "  Red  team: " (vals (second teams)))
