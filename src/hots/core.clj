@@ -24,11 +24,9 @@
   (:body (client/get "http://heroesjson.com/json/heroes.json" {:accept :json, :as :json})))
 
 (defn validate-heroes-db []
-  (let [names (set (map :name all-heroes-data))]
-    (every? (fn [heroes]
-              (every? (fn [hero] (contains? names hero))
-                      heroes))
-            (vals db/heroes-map))))
+  (let [all-heroes-names (set (map :name all-heroes-data))
+        db-heroes-names (reduce union (vals db/heroes-map))]
+    (every? #(contains? all-heroes-names %) db-heroes-names)))
 
 (defn- get-hero-property [hero-name property-name]
   (property-name (some #(if (= hero-name (:name %)) %) all-heroes-data)))
