@@ -21,7 +21,7 @@
     (set)))
 
 (def all-heroes-data
-  (:body (client/get "http://heroesjson.com/json/heroes.json" {:accept :json, :as :json})))
+  (:body (client/get "http://heroesjson.com/heroes.json" {:accept :json, :as :json})))
 
 (defn validate-heroes-db []
   (let [all-heroes-names (set (map :name all-heroes-data))
