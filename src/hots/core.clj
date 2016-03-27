@@ -139,7 +139,7 @@
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
 
 (defn -main [& args]
-  (let [teams (mirror-set-up-random-teams (difference db/gamers #{:Bratus :Ismail :Vlad}) :free-pick true)]
+  (let [teams (mirror-set-up-random-teams (difference db/gamers #{}) :free-pick true)]
     (if (or (nil? (first teams)) (nil? (second teams)))
       (do (println "Unable to find a team for random setup. Try again.")
           (-main))
