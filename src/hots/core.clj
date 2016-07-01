@@ -23,11 +23,6 @@
 (def all-heroes-data
   (:body (client/get "http://heroesjson.com/heroes.json" {:accept :json, :as :json})))
 
-(defn validate-heroes-db []
-  (let [all-heroes-names (set (map :name all-heroes-data))
-        db-heroes-names (reduce union (vals db/heroes-map))]
-    (every? #(contains? all-heroes-names %) db-heroes-names)))
-
 (defn- get-hero-property [hero-name property-name]
   (property-name (some #(if (= hero-name (:name %)) %) all-heroes-data)))
 
@@ -40,7 +35,9 @@
     (if (some some? [role type])
       (filter #(hero-have-these-role-and-type % role type)
               (get-heroes-for owner :free-pick free-pick :without without))
-      (difference (union (owner db/heroes-map) (if free-pick free-rotation-heroes))
+      (difference (if db/all-available?
+                    (set (map :name all-heroes-data))
+                    (union (owner db/heroes-map) (if free-pick free-rotation-heroes)))
                   (union db/banned-heroes without)))))
 
 (defn- random-hero [owner free-pick & {:keys [role type]}]
@@ -139,16 +136,21 @@
     (throw (IllegalArgumentException. "There should be 2, 4, 6, 8 or 10 members."))))
 
 (defn -main [& args]
-  (let [teams (mirror-set-up-random-teams (difference db/gamers #{}) :free-pick true)]
+  (let [teams (mirror-set-up-random-teams (difference db/gamers #{:Stepanov :Bratus}) :free-pick true)]
     (if (or (nil? (first teams)) (nil? (second teams)))
-      (do (println "Unable to find a team for random setup. Try again.")
+      (do (println "Unable to find a team for random setup. Trying again.")
           (-main))
-      (do (println "Heroes teams:")
-          (println "  Blue team: " (vals (first teams)))
-          (println "  Red  team: " (vals (second teams)))
+      (do (println "Heroes:")
+          (println (vals (first teams)))
+          (println "      versus      ")
+          (println (vals (second teams)))
+          (print "Ok? > ")
+          (flush)
 
           (if (not-empty (read-line))
             (do (println "Teams revealed:")
-                (println (str "  Blue team: " (first teams)))
-                (println (str "  Red  team: " (second teams))))
-            (-main))))))
+                (println (first teams))
+                (println "      versus      ")
+                (println (second teams)))
+            (do (println)
+                (-main)))))))
