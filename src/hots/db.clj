@@ -31,7 +31,8 @@
 
 (def heroes-map
   {:Anton       #{"Artanis" "Butcher" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kerrigan" "Kharazim" "Leoric"
-                  "Li Li" "Li-Ming" "Lunara" "Malfurion" "Muradin" "Murky" "Nova" "Raynor" "Samuro" "Stitches" "Tracer" "Tychus"
+                  "Li Li" "Li-Ming" "
+                  " "Malfurion" "Muradin" "Murky" "Nova" "Raynor" "Samuro" "Stitches" "Tracer" "Tychus"
                   "Tyrande" "Valla"}
    :Bratus      #{"Anub'arak" "Arthas" "Brightwing" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kharazim" "Li Li"
                   "Li-Ming" "Lt. Morales" "Lunara" "Malfurion" "Muradin" "Nazeebo" "Raynor" "Rehgar" "Sgt. Hammer"
@@ -50,9 +51,11 @@
    :Stepanov    #{"Anub'arak" "Arthas" "Azmodan" "Cho" "Diablo" "E.T.C." "Gall" "Gazlowe" "Illidan" "Johanna"
                   "Kharazim" "Leoric" "Li Li" "Lunara" "Malfurion" "Muradin" "Raynor" "Rehgar" "Sonya" "Tassadar"
                   "Tychus" "Tyrael" "Valla" "Xul"}
-   :Vlad        #{"Abathur" "Anub'arak" "Artanis" "Azmodan" "Brightwing" "Butcher" "Chen" "Cho" "Chromie" "E.T.C." "Falstad"
-                  "Gall" "Gazlowe" "Greymane" "Illidan" "Jaina" "Johanna" "Kael'thas" "Kerrigan" "Kharazim" "Li Li" "Li-Ming"
-                  "Lunara" "Malfurion" "Muradin" "Murky" "Nazeebo" "Raynor" "Sylvanas" "Sonya" "Stitches" "Tassadar" 
-                  "Thrall" "Tracer" "Tychus" "Tyrael" "Tyrande" "Uther" "Valla" "Xul" "Zagara"}})
+   :Vlad        #{"Abathur" "Alarak" "Anub'arak" "Artanis" "Arthas" "Azmodan" "Brightwing" "Butcher" "Chen" "Cho"
+                  "Chromie" "Dehaka" "Diablo" "E.T.C." "Falstad" "Gall" "Gazlowe" "Greymane" "Illidan" "Jaina" 
+                  "Johanna" "Kael'thas" "Kerrigan" "Kharazim" "Li Li" "Lt. Morales" "Li-Ming" "Lunara" "Malfurion"
+                  "Muradin" "Murky" "Nazeebo" "Nova" "Raynor" "Rehgar" "Rexxar" "Sgt. Hammer" "Sylvanas" "Sonya" 
+                  "Stitches" "Tassadar" "Thrall" "Tracer" "Tychus" "Tyrael" "Tyrande" "Uther" "Valla" "Xul" "Zagara"
+                  "Zarya"}})
 
 (def gamers (set (keys heroes-map)))
