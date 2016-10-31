@@ -51,8 +51,8 @@
                   "Kharazim" "Leoric" "Li Li" "Lunara" "Malfurion" "Muradin" "Raynor" "Rehgar" "Sonya" "Tassadar"
                   "Tychus" "Tyrael" "Valla" "Xul"}
    :Vlad        #{"Abathur" "Anub'arak" "Artanis" "Brightwing" "Butcher" "Chen" "Cho" "Chromie" "E.T.C." "Falstad"
-                  "Gall" "Gazlowe" "Illidan" "Jaina" "Johanna" "Kael'thas" "Kerrigan" "Kharazim" "Li Li" "Li-Ming"
-                  "Malfurion" "Muradin" "Murky" "Nazeebo" "Raynor" "Sonya" "Stitches" "Tassadar" "Thrall" "Tracer"
-                  "Tychus" "Tyrael" "Tyrande" "Valla" "Xul" "Zagara"}})
+                  "Gall" "Gazlowe" "Greymane" "Illidan" "Jaina" "Johanna" "Kael'thas" "Kerrigan" "Kharazim" "Li Li" "Li-Ming"
+                  "Malfurion" "Muradin" "Murky" "Nazeebo" "Raynor" "Sylvanas" "Sonya" "Stitches" "Tassadar" "Thrall" "Tracer"
+                  "Tychus" "Tyrael" "Tyrande" "Uther" "Valla" "Xul" "Zagara"}})
 
 (def gamers (set (keys heroes-map)))
