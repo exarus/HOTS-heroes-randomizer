@@ -33,7 +33,7 @@
   {:Anton       #{"Artanis" "Butcher" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kerrigan" "Kharazim" "Leoric"
                   "Li Li" "Li-Ming" "Lunara" "Malfurion" "Muradin" "Murky" "Nova" "Raynor" "Samuro" "Stitches" "Tracer" "Tychus"
                   "Tyrande" "Valla"}
-   :Bratus      #{"Anub'arak" "Brightwing" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kharazim" "Li Li"
+   :Bratus      #{"Anub'arak" "Arthas" "Brightwing" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kharazim" "Li Li"
                   "Li-Ming" "Lt. Morales" "Lunara" "Malfurion" "Muradin" "Nazeebo" "Raynor" "Rehgar" "Sgt. Hammer"
                   "Sonya" "Sylvanas" "Tassadar" "Tyrael" "Tyrande" "Uther" "Valla" "Zagara"}
    :Eugene      #{"Artanis" "Cho" "Chromie" "Diablo" "E.T.C." "Gall" "Jaina" "Johanna" "Li Li" "Li-Ming" "Malfurion"
