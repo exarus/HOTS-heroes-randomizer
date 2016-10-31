@@ -31,7 +31,7 @@
 
 (def heroes-map
   {:Anton       #{"Artanis" "Butcher" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kerrigan" "Kharazim" "Leoric"
-                  "Li Li" "Li-Ming" "Lunara" "Malfurion" "Muradin" "Murky" "Nova" "Raynor" "Stitches" "Tracer" "Tychus"
+                  "Li Li" "Li-Ming" "Lunara" "Malfurion" "Muradin" "Murky" "Nova" "Raynor" "Samuro" "Stitches" "Tracer" "Tychus"
                   "Tyrande" "Valla"}
    :Bratus      #{"Anub'arak" "Brightwing" "Cho" "Chromie" "E.T.C." "Gall" "Gazlowe" "Jaina" "Kharazim" "Li Li"
                   "Li-Ming" "Lt. Morales" "Lunara" "Malfurion" "Muradin" "Nazeebo" "Raynor" "Rehgar" "Sgt. Hammer"
