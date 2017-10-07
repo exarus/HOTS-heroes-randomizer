@@ -5,15 +5,14 @@ App was created to randomize hero picks for [Heroes of the Storm](https://heroes
 ## Usage
 
 1. Fill the db.clj with proper `heroes-map` for your friends
-
 ```clojure
 {:John  #{"Artanis" "Butcher"}
  :Wick #{"Anub'arak" "Brightwing"}}
 ```
 
 2. From the root directory run command:
-
-    > `lein run`
+- for Windows: `lein run`
+- for macOS and Linux: `./lein run`
 
 3. Progam will show the suggested setup.
   * If you like the hero setup **type anything**, for example: `cool` and press *Enter*, key.
