@@ -1,6 +1,6 @@
 # HOTS-heroes-randomizer
 
-App was created to randomize hero picks for [Heroes of the Storm](https://heroesofthestorm.com) custom games.
+App was created to randomize hero picks for [Heroes of the Storm](https://heroesofthestorm.com) custom games. No longer can be used on the Lost Cavern map.
 
 ## Usage
 
