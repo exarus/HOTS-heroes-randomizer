@@ -1,1 +1,0 @@
-Best HOTS randomizer-ever
