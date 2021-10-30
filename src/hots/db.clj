@@ -46,7 +46,7 @@
                   "Medivh" "Muradin" "Nazeebo" "Raynor" "Sylvanas" "Tassadar" "Thrall" "Tychus" "Uther" "Valla" "Xul"
                   "Zagara" "Zeratul"}
    :Shiron      #{"Cho" "E.T.C." "Gall" "Illidan" "Johanna" "Li Li" "Li-Ming" "Malfurion" "Muradin" "Raynor" "Sonya"
-                  "Sylvanas" "Tracer" "Tyrael" "Valla" "Xul"}
+                  "Sylvanas" "Tracer" "Tyrael" "Valla" "Xul" "Valeera"}
    :Stepanov    #{"Anub'arak" "Arthas" "Azmodan" "Cho" "Diablo" "E.T.C." "Gall" "Gazlowe" "Illidan" "Johanna"
                   "Kharazim" "Leoric" "Li Li" "Lunara" "Malfurion" "Muradin" "Raynor" "Rehgar" "Sonya" "Tassadar"
                   "Tychus" "Tyrael" "Valla" "Xul"}
