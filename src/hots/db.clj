@@ -13,7 +13,7 @@
    [{:role "Warrior"} {:role "Assassin" :type "Melee"}]
    [{:role "Warrior"} {:role "Assassin" :type "Ranged"}]
 
-   ;[{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
+   [{:role "Assassin" :type "Melee"} {:role "Assassin"} {:role "Assassin" :type "Ranged"}]
    [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Ranged"}]
    [{:role "Support"} {:role "Assassin" :type "Ranged"} {:role "Assassin" :type "Melee"}]
    [{:role "Support"} {:role "Assassin" :type "Melee"} {:role "Assassin" :type "Melee"}]
